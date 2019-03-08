@@ -30,14 +30,25 @@ What would you like to do? \n
 def program():
     user_decision = get_user_input()
     if int(user_decision) == 1:
-
-        print('Your balance is $' )
+        with open('current_balance.txt') as f:
+            balance = f.readlines()
+        transactions = [float(i) for i in balance]
+        current_balance = sum(transactions)
+        print("Your balance is ${:0.2f}".format(current_balance))
         new_choice = input('Do you need to do any transactions? ')
         if new_choice == 'Yes':
             program()
         else:
             print('Thank you, come again!')
-    
+    if int(user_decision) == 2:
+        withdraw_amount = input('Please enter amount: ')
+        withdraw_transaction('-' + withdraw_amount)
+        new_choice = input('Do you need to do another transaction? ')
+        if new_choice == 'Yes':
+            program()
+        else:
+            print('Thank you, come again!')
+
     if int(user_decision) == 3:
         deposit_amount = input('Please enter amount: ')
         deposit_transaction(deposit_amount)
@@ -73,7 +84,7 @@ def deposit_transaction(amount):
 
 
 
-transactions = []
+# transactions = []
 
 # create function to run deposits
 # def deposit_transaction(amount):
@@ -90,16 +101,22 @@ transactions = []
 # create function to run withdraws
 
 
+# def withdraw_transaction(amount):
+#     # if user_decision == 3:
+#     withdraw_amount_function = amount * -1    
+#     with open('current_balance.txt', 'a') as f:
+#         f.write('\n%s' %str(withdraw_amount_function))
+#                 # transactions.append(amount)
+#         if not amount.isdigit():
+#             print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+
+
 def withdraw_transaction(amount):
-    # if user_decision == 3:
         with open('current_balance.txt', 'a') as f:
                 f.write('\n%s' %str(amount))
                 # transactions.append(amount)
-                if not amount.isdigit():
+                if amount.isdigit():
                     print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
-
-
-
 
 
 
@@ -109,5 +126,7 @@ def withdraw_transaction(amount):
 historical_dates_times = []
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
 
-
 program()
+
+
+
