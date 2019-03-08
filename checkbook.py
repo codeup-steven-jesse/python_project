@@ -45,8 +45,12 @@ def program():
 
 
 
-
-<<<<<<< HEAD
+# create function to run credit (addition/deposit)
+def calculate_transaction(amount):
+    # if user_decision == 3:
+        with open('current_balance.txt', 'a') as f:
+                f.write(str(amount),'\n')
+                # transactions.append()
 
 
 
@@ -112,8 +116,6 @@ calculate_transaction(200)
 
 historical_dates_times = []
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
-=======
->>>>>>> 51c29ebdec1223862c231a17c6b97c16347805af
 
 
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
