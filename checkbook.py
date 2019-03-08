@@ -1,21 +1,42 @@
 
+from json import load
 
-print('\n~~~ Welcome to your terminal checkbook! ~~~\n')
-
-print('What would you like to do? \n')
-
-
-user_decision = input('''1) View current balance
-2) Record a debit (withdraw)
-3) Record a credit (deposit)
-4) Exit\n''')
+with open('current_balance.txt') as f:
+    balance = f.read()
 
 
-while not user_decision.isdigit() or int(user_decision) > 5 or input(user_decision) < 1:
-    print(user_decision + ' is not a valid option. Please pick a valid number.\n')
-    user_decision = input('''1) View current balance
-2) Record a debit (withdraw)
-3) Record a credit (deposit)
-4) Exit\n''')
-    continue
-print(user_decision)
+def validate_user_input(user_decision):
+    while not user_decision.isdigit() or int(user_decision) > 5 or input(user_decision) < 1:
+        return user_decision
+    else:
+        user_decision = input('What would you like to do? \n')
+
+
+def program(user_decision):
+    if user_decision == 1:
+        print('Your current balance is $' + balance + '.')
+    # elif user_decision == 2:
+    #
+    # elif user_decision == 3:
+
+    else:
+        print('End program')
+
+
+
+
+
+
+
+print('\n~~~ Welcome to your terminal checkbook! ~~~')
+
+user_decision = int(input('''
+    What would you like to do? \n
+    1) View current balance\n
+    2) Add a debit (withdrawal)\n
+    3) Add a credit (deposit)\n
+    4) Exit \n 
+    '''))
+
+
+program(user_decision)
