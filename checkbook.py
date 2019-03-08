@@ -1,8 +1,8 @@
 
-from json import load
+import json
 
 with open('current_balance.txt') as f:
-    balance = f.read()
+    balance = f.readlines()
 
 
 
@@ -33,7 +33,9 @@ What would you like to do? \n
 def program():
     user_decision = get_user_input()
     if int(user_decision) == 1:
-        print('Your balance is $' + balance)
+        transactions = [float(i) for i in balance]
+        current_balance = sum(transactions)
+        print("Your balance is ${:0.2f}".format(current_balance))
         new_choice = input('Do you need to do any transactions? ')
         if new_choice == 'Yes':
             program()
@@ -45,80 +47,13 @@ def program():
 
 
 
-# create function to run credit (addition/deposit)
-def calculate_transaction(amount):
-    # if user_decision == 3:
-        with open('current_balance.txt', 'a') as f:
-                f.write(str(amount),'\n')
-                # transactions.append()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-transactions = []
-
-# create function to run credit (addition/deposit)
-def calculate_transaction(amount):
-    # if user_decision == 3:
-        with open('current_balance.txt', 'a') as f:
-                f.write(str(amount))
-                # transactions.append()
-
-calculate_transaction(200)
-
-
-# create function to run debit (subtraction/withdrawl)
-
-
-
-
-
-
-
-
-
-
-# --------~~~~~~~~~~ADDITIONAL FEATURES~~~~~~~~~~--------
-
-historical_dates_times = []
-print('\n~~~ Welcome to your terminal checkbook! ~~~')
 
 
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
-
 
 program()
+
+
+
