@@ -5,29 +5,48 @@ with open('current_balance.txt') as f:
     balance = f.read()
 
 
-def validate_user_input(user_decision):
-    while not user_decision.isdigit() or int(user_decision) > 5 or input(user_decision) < 1:
-        return user_decision
-    else:
-        user_decision = input('What would you like to do? \n')
+
+def get_user_input():
+    user_decision = input('''
+What would you like to do? \n
+1) View current balance
+2) Add a debit (withdrawal)
+3) Add a credit (deposit)
+4) Exit
+        ''')
+
+    while not user_decision.isdigit() or int(user_decision) > 4 or int(user_decision) < 1:
+        print('Error! "' + user_decision + '" is not a valid option.\nPlease pick a valid number from the list.')
+        user_decision = input('''
+What would you like to do? \n
+1) View current balance
+2) Add a debit (withdrawal)
+3) Add a credit (deposit)
+4) Exit\n
+        ''')
+    return user_decision
 
 
-def program(user_decision):
-    if user_decision == 1:
-        print('Your current balance is $' + balance + '.')
-    # elif user_decision == 2:
-    #
-    # elif user_decision == 3:
-
-    else:
-        print('End program')
 
 
 
+def program():
+    user_decision = get_user_input()
+    if int(user_decision) == 1:
+        print('Your balance is $' + balance)
+        new_choice = input('Do you need to do any transactions? ')
+        if new_choice == 'Yes':
+            program()
+        else:
+            print('Thank you, come again!')
+    if int(user_decision) == 4:
+        print('Thank you, come again!')
 
 
 
 
+
+<<<<<<< HEAD
 
 
 
@@ -93,14 +112,11 @@ calculate_transaction(200)
 
 historical_dates_times = []
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
-
-user_decision = int(input('''
-    What would you like to do? \n
-    1) View current balance\n
-    2) Add a debit (withdrawal)\n
-    3) Add a credit (deposit)\n
-    4) Exit \n 
-    '''))
+=======
+>>>>>>> 51c29ebdec1223862c231a17c6b97c16347805af
 
 
-program(user_decision)
+print('\n~~~ Welcome to your terminal checkbook! ~~~')
+
+
+program()
