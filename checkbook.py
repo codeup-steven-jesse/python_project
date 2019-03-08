@@ -1,8 +1,8 @@
 
-from json import load
+import json
 
 with open('current_balance.txt') as f:
-    balance = f.read()
+    balance = f.readlines()
 
 
 
@@ -27,14 +27,21 @@ What would you like to do? \n
     return user_decision
 
 
-
-
-
 def program():
     user_decision = get_user_input()
     if int(user_decision) == 1:
-        print('Your balance is $' + balance)
+
+        print('Your balance is $' )
         new_choice = input('Do you need to do any transactions? ')
+        if new_choice == 'Yes':
+            program()
+        else:
+            print('Thank you, come again!')
+    
+    if int(user_decision) == 3:
+        deposit_amount = input('Please enter amount: ')
+        deposit_transaction(deposit_amount)
+        new_choice = input('Do you need to do another transaction? ')
         if new_choice == 'Yes':
             program()
         else:
@@ -44,46 +51,23 @@ def program():
 
 
 
+#create a function to handle numerical calculations
+
+# def calculator():
+
 
 # create function to run credit (addition/deposit)
-def calculate_transaction(amount):
+def deposit_transaction(amount):
     # if user_decision == 3:
         with open('current_balance.txt', 'a') as f:
-                f.write(str(amount),'\n')
-                # transactions.append()
+                f.write('\n%s' %str(amount))
+                # transactions.append(amount)
+                if not amount.isdigit():
+                    print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+        
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# deposit_transaction(200)
 
 
 
@@ -91,20 +75,28 @@ def calculate_transaction(amount):
 
 transactions = []
 
-# create function to run credit (addition/deposit)
-def calculate_transaction(amount):
+# create function to run deposits
+# def deposit_transaction(amount):
+#     # if user_decision == 3:
+#         with open('current_balance.txt', 'a') as f:
+#                 f.write('\n%s' %str(amount))
+#                 # transactions.append(amount)
+#                 if not amount.isdigit():
+#                     print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+
+
+
+
+# create function to run withdraws
+
+
+def withdraw_transaction(amount):
     # if user_decision == 3:
         with open('current_balance.txt', 'a') as f:
-                f.write(str(amount))
-                # transactions.append()
-
-calculate_transaction(200)
-
-
-# create function to run debit (subtraction/withdrawl)
-
-
-
+                f.write('\n%s' %str(amount))
+                # transactions.append(amount)
+                if not amount.isdigit():
+                    print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
 
 
 
@@ -115,9 +107,6 @@ calculate_transaction(200)
 # --------~~~~~~~~~~ADDITIONAL FEATURES~~~~~~~~~~--------
 
 historical_dates_times = []
-print('\n~~~ Welcome to your terminal checkbook! ~~~')
-
-
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
 
 
