@@ -1,10 +1,4 @@
 
-import json
-
-with open('current_balance.txt') as f:
-    balance = f.readlines()
-
-
 
 def get_user_input():
     user_decision = input('''
@@ -33,22 +27,20 @@ def new_action():
     if new_choice == 'yes' or new_choice == 'y':
         program()
     else:
-            print('Thank you, come again!')
+        print('Thank you, come again!')
 
 def deposit_transaction(amount):
-    # if user_decision == 3:
-        with open('current_balance.txt', 'a') as f:
-                f.write('\n%s' %str(amount))
-                # transactions.append(amount)
-                if not amount.isdigit():
-                    print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+    with open('current_balance.txt', 'a') as f:
+        f.write('\n%s' %str(amount))
+    if not amount.isdigit():
+        print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
 
 
 def withdraw_transaction(amount):
     with open('current_balance.txt', 'a') as f:
         f.write('\n%s' % str(amount))
-        if amount.isdigit():
-            print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+    if amount.isdigit():
+        print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
 
 def transaction_history():
     with open('current_balance.txt') as f:
@@ -79,18 +71,15 @@ def program():
     if int(user_decision) == 4:
         print('Here is a list of all your transactions: \n')
         transaction_history()
+        print('')
         new_action()
-
 
     if int(user_decision) == 5:
         print('Thank you, come again!')
 
 
-
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
 
 program()
-
-
 
 
