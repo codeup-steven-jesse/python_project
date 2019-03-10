@@ -30,6 +30,7 @@ What would you like to do? \n
     return user_decision
 
 #prompts user for a decision during the course of the session
+
 def new_action():
     new_choice = input('Do you need to do another action? (Yes or No) \n').lower()
     if new_choice == 'yes' or new_choice == 'y':
@@ -57,6 +58,37 @@ def withdraw_transaction(amount):
         print('You withdrew ${} on {}'.format(amount[1:], now.strftime("%m/%d/%Y, %H:%M:%S")))
     else:
         print('Error! "' + amount[1:] + '" is not a valid option.\nPlease type a number.')
+
+# def withdraw_transaction(amount):
+#     verify_withdraw(amount)
+#     with open('current_balance.txt', 'a') as f:
+#         f.write('\n%s' % str(amount))
+
+
+# def verify_withdraw(amount):
+#     amount = str(amount)
+#     amount = amount.replace('.','')
+#     amount = amount.replace('-','')
+#     while not amount.isdigit():
+#         print('Error! "' + amount + '" is not a valid number.')
+#         amount = input('Please enter a valid number: ')
+#     return amount
+
+
+# def deposit_transaction(amount):
+#     verify_deposit(amount)
+#     with open('current_balance.txt', 'a') as f:
+#         f.write('\n%s' % str(amount))
+
+
+# def verify_deposit(amount):
+#     amount = str(amount)
+#     amount = amount.replace('.','')
+#     while not amount.isdigit():
+#         print('Error! "' + amount + '" is not a valid number.')
+#         amount = input('Please enter a valid number: ')
+#     return amount
+
 
 # define function to show the transaction history
 def transaction_history():
