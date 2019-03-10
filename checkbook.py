@@ -22,6 +22,7 @@ What would you like to do? \n
         ''')
     return user_decision
 
+
 def new_action():
     new_choice = input('Do you need to do another action? (Yes or No) \n').lower()
     if new_choice == 'yes' or new_choice == 'y':
@@ -29,18 +30,37 @@ def new_action():
     else:
         print('Thank you, come again!')
 
-def deposit_transaction(amount):
-    with open('current_balance.txt', 'a') as f:
-        f.write('\n%s' %str(amount))
-    if not amount.isdigit():
-        print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
-
 
 def withdraw_transaction(amount):
+    verify_withdraw(amount)
     with open('current_balance.txt', 'a') as f:
         f.write('\n%s' % str(amount))
-    if amount.isdigit():
-        print('Error! "' + amount + '" is not a valid option.\nPlease type a number.')
+
+
+def verify_withdraw(amount):
+    amount = str(amount)
+    amount = amount.replace('.','')
+    amount = amount.replace('-','')
+    while not amount.isdigit():
+        print('Error! "' + amount + '" is not a valid number.')
+        amount = input('Please enter a valid number: ')
+    return amount
+
+
+def deposit_transaction(amount):
+    verify_deposit(amount)
+    with open('current_balance.txt', 'a') as f:
+        f.write('\n%s' % str(amount))
+
+
+def verify_deposit(amount):
+    amount = str(amount)
+    amount = amount.replace('.','')
+    while not amount.isdigit():
+        print('Error! "' + amount + '" is not a valid number.')
+        amount = input('Please enter a valid number: ')
+    return amount
+
 
 def transaction_history():
     with open('current_balance.txt') as f:
@@ -81,5 +101,7 @@ def program():
 print('\n~~~ Welcome to your terminal checkbook! ~~~')
 
 program()
+
+
 
 
