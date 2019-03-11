@@ -40,7 +40,7 @@ def new_action():
 
 # define function to make a deposit
 def deposit_transaction(amount):
-    if amount.isdigit():
+    if amount[:-3].isdigit():
         with open('current_balance.txt', 'a') as f:
                 f.write('\n%s' %str(amount))
                 # history_of_transactions.append(amount) #+ now)
@@ -51,7 +51,7 @@ def deposit_transaction(amount):
 
 # define function to make a withdraw
 def withdraw_transaction(amount):
-    if amount[1:].isdigit():    
+    if amount[1:-3].isdigit():    
         with open('current_balance.txt', 'a') as f:
                 f.write('\n%s' %str(amount))
                 # history_of_transactions.append(str(amount) + str(datetime.datetime.now()))
